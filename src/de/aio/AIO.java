@@ -8,14 +8,16 @@ import java.util.Properties;
 import javax.security.auth.login.LoginException;
 
 import de.aio.listeners.ConsoleListener;
+import de.aio.listeners.TextChannelListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 
 public class AIO
 {
-	private Properties options;
+	public Properties options;
 	public static AIO INSTANCE;
+	public static CommandManager commandManager;
 	public JDA jda;
 	
 	public static void main(String[] args)
@@ -34,6 +36,7 @@ public class AIO
 	{
 		INSTANCE = this;
 		options = new Properties();
+		commandManager = new CommandManager();
 		
 		try
 		{
@@ -55,6 +58,8 @@ public class AIO
 		}
 		
 		JDABuilder builder = JDABuilder.createDefault(options.getProperty(Options.Token.name()));
+		
+		builder.addEventListeners(new TextChannelListener());
 		
 		jda = builder.build();
 		
