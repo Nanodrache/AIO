@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import de.aio.AIO;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.OnlineStatus;
+
 public class ConsoleListener
 {
 	public ConsoleListener()
@@ -20,9 +24,14 @@ public class ConsoleListener
 					String[] args = line.split(" ");
 					String cmd = args[0];
 					
-					if (cmd.equalsIgnoreCase(""))
+					if (cmd.equalsIgnoreCase("/exit"))
 					{
+						JDA jda = AIO.INSTANCE.jda;
 						
+						jda.getShardManager().setStatus(OnlineStatus.OFFLINE);
+						jda.shutdown();
+						
+						br.close();
 					}
 					else
 					{

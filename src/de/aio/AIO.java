@@ -8,12 +8,15 @@ import java.util.Properties;
 import javax.security.auth.login.LoginException;
 
 import de.aio.listeners.ConsoleListener;
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 
 public class AIO
 {
 	private Properties options;
+	public static AIO INSTANCE;
+	public JDA jda;
 	
 	public static void main(String[] args)
 	{
@@ -29,6 +32,7 @@ public class AIO
 	
 	public AIO() throws LoginException
 	{
+		INSTANCE = this;
 		options = new Properties();
 		
 		try
@@ -52,7 +56,7 @@ public class AIO
 		
 		JDABuilder builder = JDABuilder.createDefault(options.getProperty(Options.Token.name()));
 		
-		builder.build();
+		jda = builder.build();
 		
 		builder.setStatus(OnlineStatus.ONLINE);
 		
