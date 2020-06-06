@@ -1,6 +1,7 @@
 package de.aio.manager;
 
 import net.dv8tion.jda.api.entities.Category;
+import net.dv8tion.jda.api.entities.GuildChannel;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.requests.restaction.ChannelAction;
@@ -19,5 +20,10 @@ public class ChannelManager
 		ChannelAction<VoiceChannel> channel = parent.getGuild().createVoiceChannel(channelName);
 		channel.setParent(parent);
 		channel.complete();
+	}
+
+	public void modifyBitrate(GuildChannel guildChannel, int bitrate)
+	{
+		guildChannel.getManager().setBitrate(bitrate);
 	}
 }

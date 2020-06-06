@@ -56,6 +56,57 @@ public class ChannelCommand implements TextCommand
 					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
 				}
 			}
+			else if (args[1].equalsIgnoreCase("modify"))
+			{
+				if (member.hasPermission(Permission.ADMINISTRATOR))
+				{
+					if (args[2].equalsIgnoreCase("bitrate"))
+					{
+						//get channel id
+						long id = Long.parseLong(args[3]);
+						int bitrate = Integer.parseInt(args[4]);
+						
+						AIO.channelManager.modifyBitrate(channel.getGuild().getGuildChannelById(id), bitrate);
+					}
+				}
+				else
+				{
+					message.delete().complete();
+					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
+				}
+			}
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
