@@ -68,6 +68,18 @@ public class ChannelCommand implements TextCommand
 						
 						AIO.channelManager.modifyBitrate(channel.getGuild().getGuildChannelById(id), bitrate);
 					}
+					else if (args[2].equalsIgnoreCase("name"))
+					{
+						long id = Long.parseLong(args[3]);
+						String channelModifyName = "";
+						
+						for (int i = 4; i < args.length; i++)
+						{
+							channelModifyName += args[i];
+						}
+						
+						AIO.channelManager.modifyName(channel.getGuild().getGuildChannelById(id), channelModifyName);
+					}
 				}
 				else
 				{

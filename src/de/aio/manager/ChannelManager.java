@@ -26,4 +26,9 @@ public class ChannelManager
 	{
 		guildChannel.getManager().setBitrate(bitrate);
 	}
+
+	public void modifyName(GuildChannel guildChannel, String channelName)
+	{
+		guildChannel.getManager().setName(channelName);
+	}
 }
