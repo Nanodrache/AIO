@@ -20,7 +20,7 @@ public class ChannelCommand implements TextCommand
 		{
 			//Help for command
 		}
-		else if (args.length > 1)
+		else if (args.length > 2)
 		{
 			//Channel create
 			if (args[1].equalsIgnoreCase("create"))
@@ -126,6 +126,15 @@ public class ChannelCommand implements TextCommand
 					message.delete().complete();
 					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
 				}
+			}
+			else if (args[1].equalsIgnoreCase("info"))
+			{
+				long id = 0l;
+				
+				if (args.length == 2) id = channel.getIdLong();
+				else if (args.length == 3) id = Long.parseLong(args[2]);
+				
+				AIO.channelManager.getChannelInfo(channel.getGuild().getGuildChannelById(id), member);
 			}
 		}
 	}

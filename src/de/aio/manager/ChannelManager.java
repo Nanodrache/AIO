@@ -1,7 +1,13 @@
 package de.aio.manager;
 
+import java.awt.Color;
+
+import de.aio.AIO;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Category;
+import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.GuildChannel;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.requests.restaction.ChannelAction;
@@ -20,6 +26,42 @@ public class ChannelManager
 		ChannelAction<VoiceChannel> channel = parent.getGuild().createVoiceChannel(channelName);
 		channel.setParent(parent);
 		channel.complete();
+	}
+
+	public void getChannelInfo(GuildChannel guildChannel, Member member)
+	{
+		EmbedBuilder eb = new EmbedBuilder();
+		eb.setAuthor(AIO.INSTANCE.jda.getSelfUser().getName());
+		eb.setColor(Color.ORANGE);
+		eb.setTitle("Channelinfo : " + guildChannel.getName());
+		eb.setThumbnail(guildChannel.getGuild().getBannerUrl());
+
+		eb.addField("Name", guildChannel.getName(), false);
+		eb.addField("ID", guildChannel.getId(), false);
+		eb.addField("Type", guildChannel.getType().name(), false);
+		eb.addField("Created", guildChannel.getTimeCreated() + "", false);
+		eb.addField("Parent", guildChannel.getParent().getName(), false);
+		eb.addField("Position", guildChannel.getPosition() + "", false);
+		eb.addField("Guildname", guildChannel.getManager().getGuild().getName(), false);
+		eb.addField("Guildid", guildChannel.getManager().getGuild().getId(), false);
+		
+		if (guildChannel.getType() == ChannelType.TEXT)
+		{
+			TextChannel tchannel = (TextChannel) guildChannel;
+
+			eb.addField("NSFW", tchannel.isNSFW() + "", false);
+			eb.addField("Slowmode", tchannel.getSlowmode() + "", false);
+			eb.addField("Messagecounter", tchannel.getHistory().size() + "", false);
+		}
+		else if (guildChannel.getType() == ChannelType.VOICE)
+		{
+			VoiceChannel vchannel = (VoiceChannel) guildChannel;
+
+			eb.addField("Bitrate", vchannel.getBitrate() + "", false);
+			eb.addField("Userlimit", vchannel.getUserLimit() + "", false);
+		}
+		
+		member.getUser().openPrivateChannel().complete().sendMessage(eb.build()).queue();
 	}
 
 	public void modifyBitrate(GuildChannel guildChannel, int bitrate)
