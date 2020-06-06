@@ -51,4 +51,9 @@ public class ChannelManager
 	{
 		guildChannel.getManager().setSlowmode(slow);
 	}
+
+	public void modifyTopic(GuildChannel guildChannel, String channelTopic)
+	{
+		guildChannel.getManager().setTopic(channelTopic);
+	}
 }
