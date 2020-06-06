@@ -129,12 +129,20 @@ public class ChannelCommand implements TextCommand
 			}
 			else if (args[1].equalsIgnoreCase("info"))
 			{
-				long id = 0l;
-				
-				if (args.length == 2) id = channel.getIdLong();
-				else if (args.length == 3) id = Long.parseLong(args[2]);
-				
-				AIO.channelManager.getChannelInfo(channel.getGuild().getGuildChannelById(id), member);
+				if (member.hasPermission(Permission.ADMINISTRATOR))
+				{
+					long id = 0l;
+					
+					if (args.length == 2) id = channel.getIdLong();
+					else if (args.length == 3) id = Long.parseLong(args[2]);
+					
+					AIO.channelManager.getChannelInfo(channel.getGuild().getGuildChannelById(id), member);
+				}
+				else
+				{
+					message.delete().complete();
+					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
+				}
 			}
 		}
 	}
