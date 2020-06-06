@@ -36,4 +36,9 @@ public class ChannelManager
 	{
 		guildChannel.getManager().setNSFW(isNSFW);
 	}
+
+	public void modifyParent(GuildChannel guildChannel, Category parent)
+	{
+		guildChannel.getManager().setParent(parent);
+	}
 }
