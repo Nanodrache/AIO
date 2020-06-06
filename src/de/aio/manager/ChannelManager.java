@@ -46,4 +46,9 @@ public class ChannelManager
 	{
 		guildChannel.getManager().setPosition(pos);
 	}
+
+	public void modifySlowmode(GuildChannel guildChannel, int slow)
+	{
+		guildChannel.getManager().setSlowmode(slow);
+	}
 }
