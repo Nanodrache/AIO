@@ -3,7 +3,7 @@ package de.aio.commands.types;
 public enum Commands
 {
 	SAY("say", "<Message>", "The bot send the <Message> in the textchannel."),
-	CHANNEL("channel", "", "Manage channel");
+	CHANNEL("channel", "<create|delete|modify|party> <id>", "Manage channel");
 	
 	private String cmd;
 	private String args;
