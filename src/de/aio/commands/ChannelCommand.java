@@ -97,6 +97,12 @@ public class ChannelCommand implements TextCommand
 						
 						AIO.channelManager.modifyPosition(channel.getGuild().getGuildChannelById(id), pos);
 					}
+					else if (args[2].equalsIgnoreCase("slowmode"))
+					{
+						int slow = Integer.parseInt(args[4]);
+						
+						AIO.channelManager.modifySlowmode(channel.getGuild().getGuildChannelById(id), slow);
+					}
 				}
 				else
 				{
