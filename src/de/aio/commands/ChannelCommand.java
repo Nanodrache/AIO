@@ -5,9 +5,11 @@ import java.util.concurrent.TimeUnit;
 import de.aio.AIO;
 import de.aio.commands.types.TextCommand;
 import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.GuildChannel;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.requests.restaction.InviteAction;
 
 public class ChannelCommand implements TextCommand
 {
@@ -177,6 +179,51 @@ public class ChannelCommand implements TextCommand
 					else if (args.length == 3) id = Long.parseLong(args[2]);
 					
 					AIO.channelManager.getChannelInfo(channel.getGuild().getGuildChannelById(id), member);
+				}
+				else
+				{
+					message.delete().complete();
+					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
+				}
+			}
+			else if (args[1].equalsIgnoreCase("invite"))
+			{
+				if (member.hasPermission(Permission.CREATE_INSTANT_INVITE))
+				{
+					if (args.length == 2)
+					{
+						InviteAction ia = channel.createInvite();
+						
+						ia.setMaxAge(1l, TimeUnit.DAYS);
+						ia.setTemporary(true);
+						
+						channel.sendMessage(ia.complete().getUrl()).complete().delete().delay(1, TimeUnit.DAYS);
+					}
+					else if (args.length == 3)
+					{
+						if (args[2].equalsIgnoreCase("unique"))
+						{
+							channel.sendMessage(channel.getGuild().getVanityUrl()).complete().delete().delay(10, TimeUnit.SECONDS);
+						}
+					}
+					else if (args.length == 5)
+					{
+						long id = Long.parseLong(args[2]);
+						GuildChannel gchannel = AIO.INSTANCE.jda.getGuildChannelById(id);
+						InviteAction ia = gchannel.createInvite();
+						
+						long time = Long.parseLong(args[3]);
+						
+						if (time > 0)
+						{
+							ia.setMaxAge(time, TimeUnit.SECONDS);
+							ia.setTemporary(true);
+						}
+						
+						int maxUses = Integer.parseInt(args[4]);
+						
+						if (maxUses > 0) ia.setMaxUses(maxUses);
+					}
 				}
 				else
 				{
