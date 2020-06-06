@@ -41,4 +41,9 @@ public class ChannelManager
 	{
 		guildChannel.getManager().setParent(parent);
 	}
+
+	public void modifyPosition(GuildChannel guildChannel, int pos)
+	{
+		guildChannel.getManager().setPosition(pos);
+	}
 }

@@ -91,6 +91,12 @@ public class ChannelCommand implements TextCommand
 						
 						AIO.channelManager.modifyParent(channel.getGuild().getGuildChannelById(id), channel.getGuild().getCategoryById(idParent));
 					}
+					else if (args[2].equalsIgnoreCase("position"))
+					{
+						int pos = Integer.parseInt(args[4]);
+						
+						AIO.channelManager.modifyPosition(channel.getGuild().getGuildChannelById(id), pos);
+					}
 				}
 				else
 				{
