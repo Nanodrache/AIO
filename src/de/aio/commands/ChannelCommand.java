@@ -114,6 +114,12 @@ public class ChannelCommand implements TextCommand
 						
 						AIO.channelManager.modifyTopic(channel.getGuild().getGuildChannelById(id), channelModifyTopic);
 					}
+					else if (args[2].equalsIgnoreCase("userlimit"))
+					{
+						int userlimit = Integer.parseInt(args[4]);
+						
+						AIO.channelManager.modifyUserlimit(channel.getGuild().getGuildChannelById(id), userlimit);
+					}
 				}
 				else
 				{

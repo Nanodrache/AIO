@@ -56,4 +56,9 @@ public class ChannelManager
 	{
 		guildChannel.getManager().setTopic(channelTopic);
 	}
+
+	public void modifyUserlimit(GuildChannel guildChannel, int userlimit)
+	{
+		guildChannel.getManager().setUserLimit(userlimit);
+	}
 }
