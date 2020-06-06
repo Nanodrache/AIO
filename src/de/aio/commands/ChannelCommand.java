@@ -64,9 +64,17 @@ public class ChannelCommand implements TextCommand
 					
 					if (args[2].equalsIgnoreCase("bitrate"))
 					{
-						int bitrate = Integer.parseInt(args[4]);
-						
-						AIO.channelManager.modifyBitrate(channel.getGuild().getGuildChannelById(id), bitrate);
+						if (AIO.channelManager.isVoicechannel(id))
+						{
+							int bitrate = Integer.parseInt(args[4]);
+							
+							AIO.channelManager.modifyBitrate(channel.getGuild().getGuildChannelById(id), bitrate);
+						}
+						else
+						{
+							message.delete().complete();
+							channel.sendMessage("This command is only for voicechannel").complete().delete().delay(5, TimeUnit.SECONDS);
+						}
 					}
 					else if (args[2].equalsIgnoreCase("name"))
 					{
@@ -81,9 +89,17 @@ public class ChannelCommand implements TextCommand
 					}
 					else if (args[2].equalsIgnoreCase("nsfw"))
 					{
-						boolean isNSFW = Boolean.parseBoolean(args[4]);
-						
-						AIO.channelManager.modifyNSFW(channel.getGuild().getGuildChannelById(id), isNSFW);
+						if (AIO.channelManager.isTextchannel(id))
+						{
+							boolean isNSFW = Boolean.parseBoolean(args[4]);
+							
+							AIO.channelManager.modifyNSFW(channel.getGuild().getGuildChannelById(id), isNSFW);
+						}
+						else
+						{
+							message.delete().complete();
+							channel.sendMessage("This command is only for textchannel").complete().delete().delay(5, TimeUnit.SECONDS);
+						}
 					}
 					else if (args[2].equalsIgnoreCase("parent"))
 					{
@@ -99,26 +115,50 @@ public class ChannelCommand implements TextCommand
 					}
 					else if (args[2].equalsIgnoreCase("slowmode"))
 					{
-						int slow = Integer.parseInt(args[4]);
-						
-						AIO.channelManager.modifySlowmode(channel.getGuild().getGuildChannelById(id), slow);
+						if (AIO.channelManager.isTextchannel(id))
+						{
+							int slow = Integer.parseInt(args[4]);
+							
+							AIO.channelManager.modifySlowmode(channel.getGuild().getGuildChannelById(id), slow);
+						}
+						else
+						{
+							message.delete().complete();
+							channel.sendMessage("This command is only for textchannel").complete().delete().delay(5, TimeUnit.SECONDS);
+						}
 					}
 					else if (args[2].equalsIgnoreCase("topic"))
 					{
-						String channelModifyTopic = "";
-						
-						for (int i = 4; i < args.length; i++)
+						if (AIO.channelManager.isTextchannel(id))
 						{
-							channelModifyTopic += args[i];
+							String channelModifyTopic = "";
+							
+							for (int i = 4; i < args.length; i++)
+							{
+								channelModifyTopic += args[i];
+							}
+							
+							AIO.channelManager.modifyTopic(channel.getGuild().getGuildChannelById(id), channelModifyTopic);
 						}
-						
-						AIO.channelManager.modifyTopic(channel.getGuild().getGuildChannelById(id), channelModifyTopic);
+						else
+						{
+							message.delete().complete();
+							channel.sendMessage("This command is only for textchannel").complete().delete().delay(5, TimeUnit.SECONDS);
+						}
 					}
 					else if (args[2].equalsIgnoreCase("userlimit"))
 					{
-						int userlimit = Integer.parseInt(args[4]);
-						
-						AIO.channelManager.modifyUserlimit(channel.getGuild().getGuildChannelById(id), userlimit);
+						if (AIO.channelManager.isVoicechannel(id))
+						{
+							int userlimit = Integer.parseInt(args[4]);
+							
+							AIO.channelManager.modifyUserlimit(channel.getGuild().getGuildChannelById(id), userlimit);
+						}
+						else
+						{
+							message.delete().complete();
+							channel.sendMessage("This command is only for voicechannel").complete().delete().delay(5, TimeUnit.SECONDS);
+						}
 					}
 				}
 				else

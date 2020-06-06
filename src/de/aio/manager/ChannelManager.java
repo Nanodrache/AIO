@@ -49,6 +49,7 @@ public class ChannelManager
 		{
 			TextChannel tchannel = (TextChannel) guildChannel;
 
+			eb.addField("Topic", tchannel.getTopic(), false);
 			eb.addField("NSFW", tchannel.isNSFW() + "", false);
 			eb.addField("Slowmode", tchannel.getSlowmode() + "", false);
 			eb.addField("Messagecounter", tchannel.getHistory().size() + "", false);
@@ -62,6 +63,18 @@ public class ChannelManager
 		}
 		
 		member.getUser().openPrivateChannel().complete().sendMessage(eb.build()).queue();
+	}
+	
+	public boolean isTextchannel(long id)
+	{
+		if (AIO.INSTANCE.jda.getGuildChannelById(id).getType() == ChannelType.TEXT) return true;
+		else return false;
+	}
+	
+	public boolean isVoicechannel(long id)
+	{
+		if (AIO.INSTANCE.jda.getGuildChannelById(id).getType() == ChannelType.VOICE) return true;
+		else return false;
 	}
 
 	public void modifyBitrate(GuildChannel guildChannel, int bitrate)
