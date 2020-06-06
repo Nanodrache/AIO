@@ -9,6 +9,8 @@ import javax.security.auth.login.LoginException;
 
 import de.aio.listeners.ConsoleListener;
 import de.aio.listeners.TextChannelListener;
+import de.aio.manager.ChannelManager;
+import de.aio.manager.CommandManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -18,6 +20,7 @@ public class AIO
 	public Properties options;
 	public static AIO INSTANCE;
 	public static CommandManager commandManager;
+	public static ChannelManager channelManager;
 	public JDA jda;
 	
 	public static void main(String[] args)
@@ -37,6 +40,7 @@ public class AIO
 		INSTANCE = this;
 		options = new Properties();
 		commandManager = new CommandManager();
+		channelManager = new ChannelManager();
 		
 		try
 		{

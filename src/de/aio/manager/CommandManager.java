@@ -1,9 +1,11 @@
-package de.aio;
+package de.aio.manager;
 
 import java.awt.Color;
 import java.util.concurrent.ConcurrentHashMap;
 
+import de.aio.commands.ChannelCommand;
 import de.aio.commands.SayCommand;
+import de.aio.commands.types.Commands;
 import de.aio.commands.types.TextCommand;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
@@ -18,7 +20,8 @@ public class CommandManager
 	{
 		this.commands = new ConcurrentHashMap<>();
 
-		this.commands.put("say", new SayCommand());
+		this.commands.put(Commands.SAY.getCmd(), new SayCommand());
+		this.commands.put(Commands.CHANNEL.getCmd(), new ChannelCommand());
 	}
 	
 	public boolean perform(String command, Member member, TextChannel channel, Message message)

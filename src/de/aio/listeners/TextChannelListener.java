@@ -27,6 +27,13 @@ public class TextChannelListener extends ListenerAdapter
 					channel.sendMessage("`Unbekannter Befehl`").queue();
 				}
 			}
+			else if (cmd.equalsIgnoreCase(Commands.CHANNEL.getCmd()))
+			{
+				if (!AIO.commandManager.perform(cmd, member, channel, msg))
+				{
+					channel.sendMessage("`Unbekannter Befehl`").queue();
+				}
+			}
 		}
 	}
 }
