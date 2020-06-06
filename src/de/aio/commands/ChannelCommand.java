@@ -60,17 +60,16 @@ public class ChannelCommand implements TextCommand
 			{
 				if (member.hasPermission(Permission.ADMINISTRATOR))
 				{
+					long id = Long.parseLong(args[3]);
+					
 					if (args[2].equalsIgnoreCase("bitrate"))
 					{
-						//get channel id
-						long id = Long.parseLong(args[3]);
 						int bitrate = Integer.parseInt(args[4]);
 						
 						AIO.channelManager.modifyBitrate(channel.getGuild().getGuildChannelById(id), bitrate);
 					}
 					else if (args[2].equalsIgnoreCase("name"))
 					{
-						long id = Long.parseLong(args[3]);
 						String channelModifyName = "";
 						
 						for (int i = 4; i < args.length; i++)
@@ -79,6 +78,12 @@ public class ChannelCommand implements TextCommand
 						}
 						
 						AIO.channelManager.modifyName(channel.getGuild().getGuildChannelById(id), channelModifyName);
+					}
+					else if (args[2].equalsIgnoreCase("nsfw"))
+					{
+						boolean isNSFW = Boolean.parseBoolean(args[4]);
+						
+						AIO.channelManager.modifyNSFW(channel.getGuild().getGuildChannelById(id), isNSFW);
 					}
 				}
 				else

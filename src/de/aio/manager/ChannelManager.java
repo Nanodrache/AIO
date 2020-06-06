@@ -31,4 +31,9 @@ public class ChannelManager
 	{
 		guildChannel.getManager().setName(channelName);
 	}
+
+	public void modifyNSFW(GuildChannel guildChannel, boolean isNSFW)
+	{
+		guildChannel.getManager().setNSFW(isNSFW);
+	}
 }
