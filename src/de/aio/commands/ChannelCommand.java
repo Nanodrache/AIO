@@ -223,6 +223,8 @@ public class ChannelCommand implements TextCommand
 						int maxUses = Integer.parseInt(args[4]);
 						
 						if (maxUses > 0) ia.setMaxUses(maxUses);
+						
+						channel.sendMessage(ia.complete().getUrl()).complete().delete().delay(10, TimeUnit.SECONDS);
 					}
 				}
 				else
