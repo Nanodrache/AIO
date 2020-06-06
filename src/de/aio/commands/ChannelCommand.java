@@ -233,6 +233,27 @@ public class ChannelCommand implements TextCommand
 					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
 				}
 			}
+			else if (args[1].equalsIgnoreCase("delete"))
+			{
+				if (member.hasPermission(Permission.ADMINISTRATOR))
+				{
+					if (args.length == 2)
+					{
+						channel.delete().complete();
+					}
+					else if (args.length == 3)
+					{
+						long id = Long.parseLong(args[2]);
+						
+						channel.getGuild().getGuildChannelById(id).delete().complete();
+					}
+				}
+				else
+				{
+					message.delete().complete();
+					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
+				}
+			}
 		}
 	}
 }
