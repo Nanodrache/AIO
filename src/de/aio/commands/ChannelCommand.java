@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.entities.GuildChannel;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.requests.restaction.InviteAction;
 
 public class ChannelCommand implements TextCommand
@@ -252,6 +253,32 @@ public class ChannelCommand implements TextCommand
 				{
 					message.delete().complete();
 					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
+				}
+			}
+			else if (args[1].equalsIgnoreCase("party"))
+			{
+				if (member.hasPermission(Permission.ADMINISTRATOR))
+				{
+					if (args[2].equalsIgnoreCase("create"))
+					{
+						long id = Long.parseLong(args[3]);
+						VoiceChannel vc = channel.getGuild().getVoiceChannelById(id);
+						
+						String suffix = "";
+						
+						for (int i = 4; i < args.length; i++)
+						{
+							suffix += args[i];
+						}
+						
+						AIO.partyManager.createLobby(vc, suffix);
+					}
+					else if (args[2].equalsIgnoreCase("delete"))
+					{
+						long id = Long.parseLong(args[3]);
+						
+						AIO.partyManager.deleteLobby(id);
+					}
 				}
 			}
 		}
