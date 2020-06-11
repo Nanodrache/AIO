@@ -3,6 +3,7 @@ package de.aio.manager;
 import java.awt.Color;
 import java.util.concurrent.ConcurrentHashMap;
 
+import de.aio.commands.BanCommand;
 import de.aio.commands.ChannelCommand;
 import de.aio.commands.KickCommand;
 import de.aio.commands.LanguageCommand;
@@ -26,6 +27,7 @@ public class CommandManager
 		this.commands.put(Commands.CHANNEL.getCmd(), new ChannelCommand());
 		this.commands.put(Commands.LANGUAGE.getCmd(), new LanguageCommand());
 		this.commands.put(Commands.KICK.getCmd(), new KickCommand());
+		this.commands.put(Commands.BAN.getCmd(), new BanCommand());
 	}
 	
 	public boolean perform(String command, Member member, TextChannel channel, Message message)

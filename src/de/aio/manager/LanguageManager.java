@@ -98,6 +98,7 @@ public class LanguageManager
 				langEnDefault.put("helpUserlimit", "Userlimit");
 				langEnDefault.put("updateLanguage", "Update language");
 				langEnDefault.put("kickFromServer", "User was kicked from the server.");
+				langEnDefault.put("banFromServer", "User was banned from the server.");
 				
 				langEnDefault.store(new FileWriter(langEn), null);
 			}
@@ -137,6 +138,7 @@ public class LanguageManager
 				langDeDefault.put("helpUserlimit", "Benutzerlimit");
 				langDeDefault.put("updateLanguage", "Sprache geändert");
 				langDeDefault.put("kickFromServer", "User wurde vom Server gekickt.");
+				langDeDefault.put("banFromServer", "User wurde vom Server verbannt.");
 				
 				langDeDefault.store(new FileWriter(langDe), null);
 			}

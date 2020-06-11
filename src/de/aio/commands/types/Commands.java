@@ -5,7 +5,8 @@ public enum Commands
 	SAY("say", "<Message>", "The bot send the <Message> in the textchannel."),
 	CHANNEL("channel", "<create|delete|modify|party> <id>", "Manage channel"),
 	LANGUAGE("language", "<language>", "Set the language of the bot messages to the language file <language>.lang"),
-	KICK("kick", "<id>", "Kick a user from the server.");
+	KICK("kick", "<id>", "Kick a user from the server."),
+	BAN("ban", "<id> <days>", "Ban a user from the server. Optional <days>");
 	
 	private String cmd;
 	private String args;
