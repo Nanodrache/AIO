@@ -96,6 +96,7 @@ public class LanguageManager
 				langEnDefault.put("helpMessageCounter", "Messagecounter");
 				langEnDefault.put("helpBitrate", "Bitrate");
 				langEnDefault.put("helpUserlimit", "Userlimit");
+				langEnDefault.put("updateLanguage", "Update language");
 				
 				langEnDefault.store(new FileWriter(langEn), null);
 			}
@@ -133,6 +134,7 @@ public class LanguageManager
 				langDeDefault.put("helpMessageCounter", "Nachrichtenzähler");
 				langDeDefault.put("helpBitrate", "Bitrate");
 				langDeDefault.put("helpUserlimit", "Benutzerlimit");
+				langDeDefault.put("updateLanguage", "Sprache geändert");
 				
 				langDeDefault.store(new FileWriter(langDe), null);
 			}

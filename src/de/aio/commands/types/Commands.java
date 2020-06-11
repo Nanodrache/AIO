@@ -3,7 +3,8 @@ package de.aio.commands.types;
 public enum Commands
 {
 	SAY("say", "<Message>", "The bot send the <Message> in the textchannel."),
-	CHANNEL("channel", "<create|delete|modify|party> <id>", "Manage channel");
+	CHANNEL("channel", "<create|delete|modify|party> <id>", "Manage channel"),
+	LANGUAGE("language", "<language>", "Set the language of the bot messages to the language file <language>.lang");
 	
 	private String cmd;
 	private String args;
