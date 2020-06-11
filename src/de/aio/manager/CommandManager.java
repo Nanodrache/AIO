@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.concurrent.ConcurrentHashMap;
 
 import de.aio.commands.ChannelCommand;
+import de.aio.commands.KickCommand;
 import de.aio.commands.LanguageCommand;
 import de.aio.commands.SayCommand;
 import de.aio.commands.types.Commands;
@@ -24,6 +25,7 @@ public class CommandManager
 		this.commands.put(Commands.SAY.getCmd(), new SayCommand());
 		this.commands.put(Commands.CHANNEL.getCmd(), new ChannelCommand());
 		this.commands.put(Commands.LANGUAGE.getCmd(), new LanguageCommand());
+		this.commands.put(Commands.KICK.getCmd(), new KickCommand());
 	}
 	
 	public boolean perform(String command, Member member, TextChannel channel, Message message)

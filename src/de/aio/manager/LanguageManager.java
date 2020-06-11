@@ -97,6 +97,7 @@ public class LanguageManager
 				langEnDefault.put("helpBitrate", "Bitrate");
 				langEnDefault.put("helpUserlimit", "Userlimit");
 				langEnDefault.put("updateLanguage", "Update language");
+				langEnDefault.put("kickFromServer", "User was kicked from the server.");
 				
 				langEnDefault.store(new FileWriter(langEn), null);
 			}
@@ -135,6 +136,7 @@ public class LanguageManager
 				langDeDefault.put("helpBitrate", "Bitrate");
 				langDeDefault.put("helpUserlimit", "Benutzerlimit");
 				langDeDefault.put("updateLanguage", "Sprache geändert");
+				langDeDefault.put("kickFromServer", "User wurde vom Server gekickt.");
 				
 				langDeDefault.store(new FileWriter(langDe), null);
 			}
