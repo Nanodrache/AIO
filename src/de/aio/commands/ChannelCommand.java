@@ -50,13 +50,13 @@ public class ChannelCommand implements TextCommand
 					else
 					{
 						message.delete().complete();
-						channel.sendMessage("Unknown channel type").complete().delete().delay(5, TimeUnit.SECONDS);
+						channel.sendMessage(AIO.languageManager.getString("unknownChannelType")).complete().delete().delay(5, TimeUnit.SECONDS);
 					}
 				}
 				else
 				{
 					message.delete().complete();
-					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
+					channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
 				}
 			}
 			else if (args[1].equalsIgnoreCase("modify"))
@@ -76,7 +76,7 @@ public class ChannelCommand implements TextCommand
 						else
 						{
 							message.delete().complete();
-							channel.sendMessage("This command is only for voicechannel").complete().delete().delay(5, TimeUnit.SECONDS);
+							channel.sendMessage(AIO.languageManager.getString("onlyVoicechannel")).complete().delete().delay(5, TimeUnit.SECONDS);
 						}
 					}
 					else if (args[2].equalsIgnoreCase("name"))
@@ -101,7 +101,7 @@ public class ChannelCommand implements TextCommand
 						else
 						{
 							message.delete().complete();
-							channel.sendMessage("This command is only for textchannel").complete().delete().delay(5, TimeUnit.SECONDS);
+							channel.sendMessage(AIO.languageManager.getString("onlyTextchannel")).complete().delete().delay(5, TimeUnit.SECONDS);
 						}
 					}
 					else if (args[2].equalsIgnoreCase("parent"))
@@ -127,7 +127,7 @@ public class ChannelCommand implements TextCommand
 						else
 						{
 							message.delete().complete();
-							channel.sendMessage("This command is only for textchannel").complete().delete().delay(5, TimeUnit.SECONDS);
+							channel.sendMessage(AIO.languageManager.getString("onlyTextchannel")).complete().delete().delay(5, TimeUnit.SECONDS);
 						}
 					}
 					else if (args[2].equalsIgnoreCase("topic"))
@@ -146,7 +146,7 @@ public class ChannelCommand implements TextCommand
 						else
 						{
 							message.delete().complete();
-							channel.sendMessage("This command is only for textchannel").complete().delete().delay(5, TimeUnit.SECONDS);
+							channel.sendMessage(AIO.languageManager.getString("onlyTextchannel")).complete().delete().delay(5, TimeUnit.SECONDS);
 						}
 					}
 					else if (args[2].equalsIgnoreCase("userlimit"))
@@ -160,14 +160,14 @@ public class ChannelCommand implements TextCommand
 						else
 						{
 							message.delete().complete();
-							channel.sendMessage("This command is only for voicechannel").complete().delete().delay(5, TimeUnit.SECONDS);
+							channel.sendMessage(AIO.languageManager.getString("onlyVoicechannel")).complete().delete().delay(5, TimeUnit.SECONDS);
 						}
 					}
 				}
 				else
 				{
 					message.delete().complete();
-					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
+					channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
 				}
 			}
 			else if (args[1].equalsIgnoreCase("info"))
@@ -184,7 +184,7 @@ public class ChannelCommand implements TextCommand
 				else
 				{
 					message.delete().complete();
-					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
+					channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
 				}
 			}
 			else if (args[1].equalsIgnoreCase("invite"))
@@ -231,7 +231,7 @@ public class ChannelCommand implements TextCommand
 				else
 				{
 					message.delete().complete();
-					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
+					channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
 				}
 			}
 			else if (args[1].equalsIgnoreCase("delete"))
@@ -252,7 +252,7 @@ public class ChannelCommand implements TextCommand
 				else
 				{
 					message.delete().complete();
-					channel.sendMessage("You don't have the permissions to perform this command.").complete().delete().delay(5, TimeUnit.SECONDS);
+					channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
 				}
 			}
 			else if (args[1].equalsIgnoreCase("party"))

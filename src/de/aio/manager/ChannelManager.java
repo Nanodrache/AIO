@@ -36,30 +36,30 @@ public class ChannelManager
 		eb.setTitle("Channelinfo : " + guildChannel.getName());
 		eb.setThumbnail(guildChannel.getGuild().getBannerUrl());
 
-		eb.addField("Name", guildChannel.getName(), false);
-		eb.addField("ID", guildChannel.getId(), false);
-		eb.addField("Type", guildChannel.getType().name(), false);
-		eb.addField("Created", guildChannel.getTimeCreated() + "", false);
-		eb.addField("Parent", guildChannel.getParent().getName(), false);
-		eb.addField("Position", guildChannel.getPosition() + "", false);
-		eb.addField("Guildname", guildChannel.getManager().getGuild().getName(), false);
-		eb.addField("Guildid", guildChannel.getManager().getGuild().getId(), false);
+		eb.addField(AIO.languageManager.getString("helpName"), guildChannel.getName(), false);
+		eb.addField(AIO.languageManager.getString("helpId"), guildChannel.getId(), false);
+		eb.addField(AIO.languageManager.getString("helpType"), guildChannel.getType().name(), false);
+		eb.addField(AIO.languageManager.getString("helpCreated"), guildChannel.getTimeCreated() + "", false);
+		eb.addField(AIO.languageManager.getString("helpParent"), guildChannel.getParent().getName(), false);
+		eb.addField(AIO.languageManager.getString("helpPosition"), guildChannel.getPosition() + "", false);
+		eb.addField(AIO.languageManager.getString("helpGuildName"), guildChannel.getManager().getGuild().getName(), false);
+		eb.addField(AIO.languageManager.getString("helpGuildId"), guildChannel.getManager().getGuild().getId(), false);
 		
 		if (guildChannel.getType() == ChannelType.TEXT)
 		{
 			TextChannel tchannel = (TextChannel) guildChannel;
 
-			eb.addField("Topic", tchannel.getTopic(), false);
-			eb.addField("NSFW", tchannel.isNSFW() + "", false);
-			eb.addField("Slowmode", tchannel.getSlowmode() + "", false);
-			eb.addField("Messagecounter", tchannel.getHistory().size() + "", false);
+			eb.addField(AIO.languageManager.getString("helpTopic"), tchannel.getTopic(), false);
+			eb.addField(AIO.languageManager.getString("helpNSFW"), tchannel.isNSFW() + "", false);
+			eb.addField(AIO.languageManager.getString("helpSlowmode"), tchannel.getSlowmode() + "", false);
+			eb.addField(AIO.languageManager.getString("helpMessageCounter"), tchannel.getHistory().size() + "", false);
 		}
 		else if (guildChannel.getType() == ChannelType.VOICE)
 		{
 			VoiceChannel vchannel = (VoiceChannel) guildChannel;
 
-			eb.addField("Bitrate", vchannel.getBitrate() + "", false);
-			eb.addField("Userlimit", vchannel.getUserLimit() + "", false);
+			eb.addField(AIO.languageManager.getString("helpBitrate"), vchannel.getBitrate() + "", false);
+			eb.addField(AIO.languageManager.getString("helpUserlimit"), vchannel.getUserLimit() + "", false);
 		}
 		
 		member.getUser().openPrivateChannel().complete().sendMessage(eb.build()).queue();

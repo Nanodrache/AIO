@@ -12,6 +12,7 @@ import de.aio.listeners.TextChannelListener;
 import de.aio.listeners.VoiceChannelListener;
 import de.aio.manager.ChannelManager;
 import de.aio.manager.CommandManager;
+import de.aio.manager.LanguageManager;
 import de.aio.manager.PartyManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -21,6 +22,7 @@ public class AIO
 {
 	public Properties options;
 	public static AIO INSTANCE;
+	public static LanguageManager languageManager;
 	public static CommandManager commandManager;
 	public static ChannelManager channelManager;
 	public static PartyManager partyManager;
@@ -42,13 +44,14 @@ public class AIO
 	{
 		INSTANCE = this;
 		options = new Properties();
+		languageManager = new LanguageManager();
 		commandManager = new CommandManager();
 		channelManager = new ChannelManager();
 		partyManager = new PartyManager();
 		
 		try
 		{
-			File optionsFile = new File("options.cfg");
+			File optionsFile = new File("/AIO", "options.cfg");
 			
 			if (optionsFile.exists())
 			{
@@ -58,6 +61,7 @@ public class AIO
 			{
 				optionsFile.createNewFile();
 				options.setProperty(Options.Token.name(), "");
+				options.setProperty(Options.Language.name(), "en");
 			}
 		}
 		catch (IOException e)

@@ -35,7 +35,7 @@ public class ConsoleListener
 					}
 					else
 					{
-						System.out.println("Befehl nicht bekannt.");
+						System.out.println(AIO.languageManager.getString("unknownCommand"));
 					}
 				}
 			}

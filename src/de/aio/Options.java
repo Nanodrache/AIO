@@ -3,5 +3,6 @@ package de.aio;
 public enum Options
 {
 	Token,
-	CommandPrefix;
+	CommandPrefix,
+	Language;
 }
