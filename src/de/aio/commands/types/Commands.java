@@ -6,7 +6,8 @@ public enum Commands
 	CHANNEL("channel", "<create|delete|modify|party> <id>", "Manage channel"),
 	LANGUAGE("language", "<language>", "Set the language of the bot messages to the language file <language>.lang"),
 	KICK("kick", "<id>", "Kick a user from the server."),
-	BAN("ban", "<id> <days>", "Ban a user from the server. Optional <days>");
+	BAN("ban", "<id> <days>", "Ban a user from the server. Optional <days>"),
+	PERMISSION("permission", "<get|give|remove|name|color> <id> <name|permission|r> <g> <b>", "Manage the permisssion system");
 	
 	private String cmd;
 	private String args;

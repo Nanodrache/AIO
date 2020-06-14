@@ -99,6 +99,11 @@ public class LanguageManager
 				langEnDefault.put("updateLanguage", "Update language");
 				langEnDefault.put("kickFromServer", "User was kicked from the server.");
 				langEnDefault.put("banFromServer", "User was banned from the server.");
+				langEnDefault.put("getPermissionInfo", "The role %roleName% has Permission %permmisionName% set to %permissionValue%.");
+				langEnDefault.put("updatePermission", "%roleName% : %permmisionName% has updated to %permissionValue%.");
+				langEnDefault.put("unknownPermission", "The permission %unknownPermission% is unknown.");
+				langEnDefault.put("updateRoleName", "The role %roleNameOld% renamed to %roleNameNew%.");
+				langEnDefault.put("updateRoleColor", "The color from role %roleName% has updated.");
 				
 				langEnDefault.store(new FileWriter(langEn), null);
 			}
@@ -139,6 +144,10 @@ public class LanguageManager
 				langDeDefault.put("updateLanguage", "Sprache geändert");
 				langDeDefault.put("kickFromServer", "User wurde vom Server gekickt.");
 				langDeDefault.put("banFromServer", "User wurde vom Server verbannt.");
+				langDeDefault.put("getPermissionInfo", "Die Rolle %roleName% hat das Recht %permmisionName% auf %permissionValue% gesetzt.");
+				langDeDefault.put("updatePermission", "%roleName% : %permmisionName% wurde auf %permissionValue% gesetzt.");
+				langDeDefault.put("unknownPermission", "Das Recht %unknownPermission% ist unbekannt.");
+				langDeDefault.put("updateRoleName", "Die Rolle %roleNameOld% wurde zu %roleNameNew% umbennant.");
 				
 				langDeDefault.store(new FileWriter(langDe), null);
 			}

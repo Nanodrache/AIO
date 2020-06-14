@@ -14,6 +14,7 @@ import de.aio.manager.ChannelManager;
 import de.aio.manager.CommandManager;
 import de.aio.manager.LanguageManager;
 import de.aio.manager.PartyManager;
+import de.aio.manager.PermissionManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -26,6 +27,7 @@ public class AIO
 	public static CommandManager commandManager;
 	public static ChannelManager channelManager;
 	public static PartyManager partyManager;
+	public static PermissionManager permissionManager;
 	public JDA jda;
 	
 	public static void main(String[] args)
@@ -48,7 +50,8 @@ public class AIO
 		commandManager = new CommandManager();
 		channelManager = new ChannelManager();
 		partyManager = new PartyManager();
-		
+		permissionManager = new PermissionManager();
+
 		try
 		{
 			File optionsFile = new File("/AIO", "options.cfg");
