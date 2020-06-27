@@ -4,5 +4,6 @@ public enum Options
 {
 	Token,
 	CommandPrefix,
-	Language;
+	Language,
+	WELCOME_MESSAGE;
 }

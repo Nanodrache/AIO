@@ -8,6 +8,7 @@ import java.util.Properties;
 import javax.security.auth.login.LoginException;
 
 import de.aio.listeners.ConsoleListener;
+import de.aio.listeners.ServerJoinListener;
 import de.aio.listeners.TextChannelListener;
 import de.aio.listeners.VoiceChannelListener;
 import de.aio.manager.ChannelManager;
@@ -65,6 +66,7 @@ public class AIO
 				optionsFile.createNewFile();
 				options.setProperty(Options.Token.name(), "");
 				options.setProperty(Options.Language.name(), "en");
+				options.setProperty(Options.WELCOME_MESSAGE.name(), "false");
 			}
 		}
 		catch (IOException e)
@@ -76,6 +78,7 @@ public class AIO
 
 		builder.addEventListeners(new TextChannelListener());
 		builder.addEventListeners(new VoiceChannelListener());
+		builder.addEventListeners(new ServerJoinListener());
 		
 		jda = builder.build();
 		

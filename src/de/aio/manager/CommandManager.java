@@ -9,6 +9,7 @@ import de.aio.commands.KickCommand;
 import de.aio.commands.LanguageCommand;
 import de.aio.commands.PermissionCommand;
 import de.aio.commands.SayCommand;
+import de.aio.commands.WelcomeCommand;
 import de.aio.commands.types.Commands;
 import de.aio.commands.types.TextCommand;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -30,6 +31,7 @@ public class CommandManager
 		this.commands.put(Commands.KICK.getCmd(), new KickCommand());
 		this.commands.put(Commands.BAN.getCmd(), new BanCommand());
 		this.commands.put(Commands.PERMISSION.getCmd(), new PermissionCommand());
+		this.commands.put(Commands.WELCOME.getCmd(), new WelcomeCommand());
 	}
 	
 	public boolean perform(String command, Member member, TextChannel channel, Message message)

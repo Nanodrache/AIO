@@ -104,6 +104,8 @@ public class LanguageManager
 				langEnDefault.put("unknownPermission", "The permission %unknownPermission% is unknown.");
 				langEnDefault.put("updateRoleName", "The role %roleNameOld% renamed to %roleNameNew%.");
 				langEnDefault.put("updateRoleColor", "The color from role %roleName% has updated.");
+				langEnDefault.put("welcomeUser", "@%userName% welcome to %serverName%.");
+				langEnDefault.put("welcomeSet", "Welcome message has channged.");
 				
 				langEnDefault.store(new FileWriter(langEn), null);
 			}
@@ -148,6 +150,8 @@ public class LanguageManager
 				langDeDefault.put("updatePermission", "%roleName% : %permmisionName% wurde auf %permissionValue% gesetzt.");
 				langDeDefault.put("unknownPermission", "Das Recht %unknownPermission% ist unbekannt.");
 				langDeDefault.put("updateRoleName", "Die Rolle %roleNameOld% wurde zu %roleNameNew% umbennant.");
+				langDeDefault.put("welcomeUser", "@%userName% willkommen auf %serverName%.");
+				langDeDefault.put("welcomeSet", "Willkomensnachricht geändert.");
 				
 				langDeDefault.store(new FileWriter(langDe), null);
 			}
