@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import de.aio.AIO;
 import de.aio.Options;
+import de.aio.PermissionList;
 import de.aio.commands.types.TextCommand;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
@@ -15,7 +16,10 @@ public class WelcomeCommand implements TextCommand
 	@Override
 	public void performCommand(Member member, TextChannel channel, Message message)
 	{
-		if (member.hasPermission(Permission.ADMINISTRATOR))
+		if (
+				member.hasPermission(Permission.ADMINISTRATOR) ||
+				AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_WELCOME.name())
+			)
 		{
 			String id = message.getContentRaw().split(" ")[1];
 			
