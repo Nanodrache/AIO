@@ -78,7 +78,6 @@ public class PermissionManager
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_DELETE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INFO.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
-			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE_NOLIMIT.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE_TEMP.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_BITRATE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
@@ -123,7 +122,6 @@ public class PermissionManager
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_DELETE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INFO.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
-			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE_NOLIMIT.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE_TEMP.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
 			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_BITRATE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());

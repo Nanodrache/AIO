@@ -3,6 +3,7 @@ package de.aio.commands;
 import java.util.concurrent.TimeUnit;
 
 import de.aio.AIO;
+import de.aio.PermissionList;
 import de.aio.commands.types.TextCommand;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.GuildChannel;
@@ -28,44 +29,66 @@ public class ChannelCommand implements TextCommand
 			//Channel create
 			if (args[1].equalsIgnoreCase("create"))
 			{
-				//Check permissions
-				if (member.hasPermission(Permission.ADMINISTRATOR))
+				String channelCreateName = "";
+				
+				for (int i = 2; i < args.length; i++)
 				{
-					String channelCreateName = "";
-					
-					for (int i = 2; i < args.length; i++)
-					{
-						channelCreateName += args[i];
-					}
-					
-					//Check channel-type
-					if (args[2].equalsIgnoreCase("text"))
+					channelCreateName += args[i];
+				}
+				
+				//Check channel-type
+				if (args[2].equalsIgnoreCase("text"))
+				{
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_CREATE.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_CREATE_TEXT.name())
+						)
 					{
 						AIO.channelManager.createTextChannel(channelCreateName, channel.getParent());
 					}
-					else if (args[2].equalsIgnoreCase("voice"))
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
+				}
+				else if (args[2].equalsIgnoreCase("voice"))
+				{
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_CREATE.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_CREATE_VOICE.name())
+						)
 					{
 						AIO.channelManager.createVoiceChannel(channelCreateName, channel.getParent());
 					}
 					else
 					{
 						message.delete().complete();
-						channel.sendMessage(AIO.languageManager.getString("unknownChannelType")).complete().delete().delay(5, TimeUnit.SECONDS);
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
 					}
 				}
 				else
 				{
 					message.delete().complete();
-					channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					channel.sendMessage(AIO.languageManager.getString("unknownChannelType")).complete().delete().delay(5, TimeUnit.SECONDS);
 				}
 			}
 			else if (args[1].equalsIgnoreCase("modify"))
 			{
-				if (member.hasPermission(Permission.ADMINISTRATOR))
+				long id = Long.parseLong(args[3]);
+				
+				if (args[2].equalsIgnoreCase("bitrate"))
 				{
-					long id = Long.parseLong(args[3]);
-					
-					if (args[2].equalsIgnoreCase("bitrate"))
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY_BITRATE.name())
+						)
 					{
 						if (AIO.channelManager.isVoicechannel(id))
 						{
@@ -79,7 +102,20 @@ public class ChannelCommand implements TextCommand
 							channel.sendMessage(AIO.languageManager.getString("onlyVoicechannel")).complete().delete().delay(5, TimeUnit.SECONDS);
 						}
 					}
-					else if (args[2].equalsIgnoreCase("name"))
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
+				}
+				else if (args[2].equalsIgnoreCase("name"))
+				{
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY_NAME.name())
+						)
 					{
 						String channelModifyName = "";
 						
@@ -90,7 +126,20 @@ public class ChannelCommand implements TextCommand
 						
 						AIO.channelManager.modifyName(channel.getGuild().getGuildChannelById(id), channelModifyName);
 					}
-					else if (args[2].equalsIgnoreCase("nsfw"))
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
+				}
+				else if (args[2].equalsIgnoreCase("nsfw"))
+				{
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY_NSFW.name())
+						)
 					{
 						if (AIO.channelManager.isTextchannel(id))
 						{
@@ -104,19 +153,58 @@ public class ChannelCommand implements TextCommand
 							channel.sendMessage(AIO.languageManager.getString("onlyTextchannel")).complete().delete().delay(5, TimeUnit.SECONDS);
 						}
 					}
-					else if (args[2].equalsIgnoreCase("parent"))
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
+				}
+				else if (args[2].equalsIgnoreCase("parent"))
+				{
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY_PARENT.name())
+						)
 					{
 						long idParent = Long.parseLong(args[4]);
 						
 						AIO.channelManager.modifyParent(channel.getGuild().getGuildChannelById(id), channel.getGuild().getCategoryById(idParent));
 					}
-					else if (args[2].equalsIgnoreCase("position"))
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
+				}
+				else if (args[2].equalsIgnoreCase("position"))
+				{
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY_POSITION.name())
+						)
 					{
 						int pos = Integer.parseInt(args[4]);
 						
 						AIO.channelManager.modifyPosition(channel.getGuild().getGuildChannelById(id), pos);
 					}
-					else if (args[2].equalsIgnoreCase("slowmode"))
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
+				}
+				else if (args[2].equalsIgnoreCase("slowmode"))
+				{
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY_SLOWMODE.name())
+						)
 					{
 						if (AIO.channelManager.isTextchannel(id))
 						{
@@ -130,7 +218,20 @@ public class ChannelCommand implements TextCommand
 							channel.sendMessage(AIO.languageManager.getString("onlyTextchannel")).complete().delete().delay(5, TimeUnit.SECONDS);
 						}
 					}
-					else if (args[2].equalsIgnoreCase("topic"))
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
+				}
+				else if (args[2].equalsIgnoreCase("topic"))
+				{
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY_TOPIC.name())
+						)
 					{
 						if (AIO.channelManager.isTextchannel(id))
 						{
@@ -149,7 +250,20 @@ public class ChannelCommand implements TextCommand
 							channel.sendMessage(AIO.languageManager.getString("onlyTextchannel")).complete().delete().delay(5, TimeUnit.SECONDS);
 						}
 					}
-					else if (args[2].equalsIgnoreCase("userlimit"))
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
+				}
+				else if (args[2].equalsIgnoreCase("userlimit"))
+				{
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_MODIFY_USERLIMIT.name())
+						)
 					{
 						if (AIO.channelManager.isVoicechannel(id))
 						{
@@ -163,16 +277,20 @@ public class ChannelCommand implements TextCommand
 							channel.sendMessage(AIO.languageManager.getString("onlyVoicechannel")).complete().delete().delay(5, TimeUnit.SECONDS);
 						}
 					}
-				}
-				else
-				{
-					message.delete().complete();
-					channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
 				}
 			}
 			else if (args[1].equalsIgnoreCase("info"))
 			{
-				if (member.hasPermission(Permission.ADMINISTRATOR))
+				if (
+						member.hasPermission(Permission.ADMINISTRATOR) ||
+						AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL.name()) ||
+						AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_INFO.name())
+					)
 				{
 					long id = 0l;
 					
@@ -189,9 +307,14 @@ public class ChannelCommand implements TextCommand
 			}
 			else if (args[1].equalsIgnoreCase("invite"))
 			{
-				if (member.hasPermission(Permission.CREATE_INSTANT_INVITE))
+				if (args.length == 2)
 				{
-					if (args.length == 2)
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							member.hasPermission(Permission.CREATE_INSTANT_INVITE) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_INVITE.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_INVITE_TEMP.name())
+						)
 					{
 						InviteAction ia = channel.createInvite();
 						
@@ -200,14 +323,40 @@ public class ChannelCommand implements TextCommand
 						
 						channel.sendMessage(ia.complete().getUrl()).complete().delete().delay(1, TimeUnit.DAYS);
 					}
-					else if (args.length == 3)
+					else
 					{
-						if (args[2].equalsIgnoreCase("unique"))
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
+				}
+				else if (args.length == 3)
+				{
+					if (args[2].equalsIgnoreCase("unique"))
+					{
+						if (
+								member.hasPermission(Permission.ADMINISTRATOR) ||
+								member.hasPermission(Permission.CREATE_INSTANT_INVITE) ||
+								AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_INVITE.name()) ||
+								AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_INVITE_UNIQUE.name())
+							)
 						{
 							channel.sendMessage(channel.getGuild().getVanityUrl()).complete().delete().delay(10, TimeUnit.SECONDS);
 						}
+						else
+						{
+							message.delete().complete();
+							channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+						}
 					}
-					else if (args.length == 5)
+				}
+				else if (args.length == 5)
+				{
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							member.hasPermission(Permission.CREATE_INSTANT_INVITE) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_INVITE.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_INVITE_NOLIMIT.name())
+						)
 					{
 						long id = Long.parseLong(args[2]);
 						GuildChannel gchannel = AIO.INSTANCE.jda.getGuildChannelById(id);
@@ -227,16 +376,19 @@ public class ChannelCommand implements TextCommand
 						
 						channel.sendMessage(ia.complete().getUrl()).complete().delete().delay(10, TimeUnit.SECONDS);
 					}
-				}
-				else
-				{
-					message.delete().complete();
-					channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
 				}
 			}
 			else if (args[1].equalsIgnoreCase("delete"))
 			{
-				if (member.hasPermission(Permission.ADMINISTRATOR))
+				if (
+						member.hasPermission(Permission.ADMINISTRATOR) ||
+						AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_DELETE.name())
+					)
 				{
 					if (args.length == 2)
 					{
@@ -257,9 +409,13 @@ public class ChannelCommand implements TextCommand
 			}
 			else if (args[1].equalsIgnoreCase("party"))
 			{
-				if (member.hasPermission(Permission.ADMINISTRATOR))
+				if (args[2].equalsIgnoreCase("create"))
 				{
-					if (args[2].equalsIgnoreCase("create"))
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_PARTY.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_PARTY_CREATE.name())
+						)
 					{
 						long id = Long.parseLong(args[3]);
 						VoiceChannel vc = channel.getGuild().getVoiceChannelById(id);
@@ -273,11 +429,28 @@ public class ChannelCommand implements TextCommand
 						
 						AIO.partyManager.createLobby(vc, suffix);
 					}
-					else if (args[2].equalsIgnoreCase("delete"))
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
+					}
+				}
+				else if (args[2].equalsIgnoreCase("delete"))
+				{
+					if (
+							member.hasPermission(Permission.ADMINISTRATOR) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_PARTY.name()) ||
+							AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_CHANNEL_PARTY_DELETE.name())
+						)
 					{
 						long id = Long.parseLong(args[3]);
 						
 						AIO.partyManager.deleteLobby(id);
+					}
+					else
+					{
+						message.delete().complete();
+						channel.sendMessage(AIO.languageManager.getString("noPermissionsCommand")).complete().delete().delay(5, TimeUnit.SECONDS);
 					}
 				}
 			}
