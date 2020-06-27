@@ -3,6 +3,7 @@ package de.aio.commands;
 import java.util.concurrent.TimeUnit;
 
 import de.aio.AIO;
+import de.aio.PermissionList;
 import de.aio.commands.types.TextCommand;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
@@ -14,7 +15,10 @@ public class LanguageCommand implements TextCommand
 	@Override
 	public void performCommand(Member member, TextChannel channel, Message message)
 	{
-		if (member.hasPermission(Permission.ADMINISTRATOR))
+		if (
+				member.hasPermission(Permission.ADMINISTRATOR) ||
+				AIO.permissionManager.hasUserPermission(member.getGuild().getIdLong(), member.getIdLong(), PermissionList.AIO_LANGUAGE.name())
+			)
 		{
 			AIO.languageManager.setLang(message.getContentDisplay().split(" ")[1]);
 			channel.sendMessage(AIO.languageManager.getString("updateLanguage")).complete();
