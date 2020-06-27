@@ -99,11 +99,15 @@ public class LanguageManager
 				langEnDefault.put("updateLanguage", "Update language");
 				langEnDefault.put("kickFromServer", "User was kicked from the server.");
 				langEnDefault.put("banFromServer", "User was banned from the server.");
-				langEnDefault.put("getPermissionInfo", "The role %roleName% has Permission %permmisionName% set to %permissionValue%.");
-				langEnDefault.put("updatePermission", "%roleName% : %permmisionName% has updated to %permissionValue%.");
+				langEnDefault.put("getPermissionInfoRole", "The role %roleName% has Permission %permmisionName% set to %permissionValue%.");
+				langEnDefault.put("getPermissionInfoUser", "The user %userName% has Permission %permmisionName% set to %permissionValue%.");
+				langEnDefault.put("updatePermissionRole", "%roleName% : %permmisionName% has updated to %permissionValue%.");
+				langEnDefault.put("updatePermissionUser", "%userName% : %permmisionName% has updated to %permissionValue%.");
 				langEnDefault.put("unknownPermission", "The permission %unknownPermission% is unknown.");
 				langEnDefault.put("updateRoleName", "The role %roleNameOld% renamed to %roleNameNew%.");
 				langEnDefault.put("updateRoleColor", "The color from role %roleName% has updated.");
+				langEnDefault.put("unknownRole", "Can\'t find the role %unknownRole%.");
+				langEnDefault.put("unknownUser", "Can\'t find the user %unknownUser%.");
 				langEnDefault.put("welcomeUser", "@%userName% welcome to %serverName%.");
 				langEnDefault.put("welcomeSet", "Welcome message has channged.");
 				
@@ -146,10 +150,14 @@ public class LanguageManager
 				langDeDefault.put("updateLanguage", "Sprache geändert");
 				langDeDefault.put("kickFromServer", "User wurde vom Server gekickt.");
 				langDeDefault.put("banFromServer", "User wurde vom Server verbannt.");
-				langDeDefault.put("getPermissionInfo", "Die Rolle %roleName% hat das Recht %permmisionName% auf %permissionValue% gesetzt.");
-				langDeDefault.put("updatePermission", "%roleName% : %permmisionName% wurde auf %permissionValue% gesetzt.");
+				langDeDefault.put("getPermissionInfoRole", "Die Rolle %roleName% hat das Recht %permmisionName% auf %permissionValue% gesetzt.");
+				langDeDefault.put("getPermissionInfoUser", "Der User %userName% hat das Recht %permmisionName% auf %permissionValue% gesetzt.");
+				langDeDefault.put("updatePermissionRole", "%roleName% : %permmisionName% wurde auf %permissionValue% gesetzt.");
+				langDeDefault.put("updatePermissionUser", "%userName% : %permmisionName% wurde auf %permissionValue% gesetzt.");
 				langDeDefault.put("unknownPermission", "Das Recht %unknownPermission% ist unbekannt.");
 				langDeDefault.put("updateRoleName", "Die Rolle %roleNameOld% wurde zu %roleNameNew% umbennant.");
+				langDeDefault.put("unknownRole", "Kann die Rolle %unknownRole% nicht finden.");
+				langDeDefault.put("unknownUser", "Kann den User %unknownUser% nicht finden.");
 				langDeDefault.put("welcomeUser", "@%userName% willkommen auf %serverName%.");
 				langDeDefault.put("welcomeSet", "Willkomensnachricht geändert.");
 				

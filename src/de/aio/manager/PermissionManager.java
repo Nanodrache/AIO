@@ -57,7 +57,7 @@ public class PermissionManager
 		else return false;
 	}
 	
-	private boolean isAioPermission(String permission)
+	public boolean isAioPermission(String permission)
 	{
 		return (PermissionList.valueOf(permission) != null);
 	}
