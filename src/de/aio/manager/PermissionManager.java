@@ -1,18 +1,23 @@
 package de.aio.manager;
 
 import java.awt.Color;
+import java.util.HashMap;
 
 import de.aio.AIO;
+import de.aio.PermissionList;
 import net.dv8tion.jda.api.Permission;
 
 public class PermissionManager
 {
+	private HashMap<String, Boolean> permissionListRole = new HashMap<>();
+	private HashMap<String, Boolean> permissionListUser = new HashMap<>();
+	
 	public PermissionManager()
 	{
 		
 	}
 	
-	public boolean givePermission(long roleId, String permission)
+	public boolean giveRolePermission(long roleId, String permission)
 	{
 		if (getPermissionFromString(permission) != Permission.UNKNOWN)
 		{
@@ -22,7 +27,7 @@ public class PermissionManager
 		else return false;
 	}
 	
-	public boolean removePermission(long roleId, String permission)
+	public boolean removeRolePermission(long roleId, String permission)
 	{
 		if (getPermissionFromString(permission) != Permission.UNKNOWN)
 		{
@@ -32,9 +37,137 @@ public class PermissionManager
 		else return false;
 	}
 	
-	public boolean hasPermission(long roleId, String permission)
+	public boolean giveUserPermission(long guildId, long userId, String permission)
 	{
-		return AIO.INSTANCE.jda.getRoleById(roleId).hasPermission(getPermissionFromString(permission));
+		if (isAioPermission(permission))
+		{
+			permissionListUser.put(guildId + "_" + userId + "_" + permission, true);
+			return true;
+		}
+		else return false;
+	}
+
+	public boolean removeUserPermission(long guildId, long userId, String permission)
+	{
+		if (isAioPermission(permission))
+		{
+			permissionListUser.remove(guildId + "_" + userId + "_" + permission);
+			return true;
+		}
+		else return false;
+	}
+	
+	private boolean isAioPermission(String permission)
+	{
+		return (PermissionList.valueOf(permission) != null);
+	}
+	
+	public boolean hasRolePermission(long roleId, String permission)
+	{
+		if (getPermissionFromString(permission) != Permission.UNKNOWN)
+		{
+			return AIO.INSTANCE.jda.getRoleById(roleId).hasPermission(getPermissionFromString(permission));
+		}
+		else
+		{
+			if (permission.equalsIgnoreCase(PermissionList.AIO_BAN.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_CREATE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_CREATE_TEXT.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_CREATE_VOICE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_DELETE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INFO.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE_NOLIMIT.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE_TEMP.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_BITRATE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_NAME.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_NSFW.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_PARENT.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_POSITION.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_SLOWMODE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_TOPIC.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_USERLIMIT.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_PARTY.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_PARTY_CREATE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_PARTY_DELETE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_KICK.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_LANGUAGE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION_COLOR.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION_GET.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION_GIVE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION_NAME.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION_REMOVE.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_SAY.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_WELCOME.name())) return hasRoleAioPermission(roleId, PermissionList.AIO_BAN.name());
+		}
+		
+		return false;
+	}
+	
+	public boolean hasUserPermission(long guildId, long userId, String permission)
+	{
+		if (getPermissionFromString(permission) != Permission.UNKNOWN)
+		{
+			return AIO.INSTANCE.jda.getGuildById(guildId).getMemberById(userId).hasPermission(getPermissionFromString(permission));
+		}
+		else
+		{
+			if (permission.equalsIgnoreCase(PermissionList.AIO_BAN.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_CREATE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_CREATE_TEXT.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_CREATE_VOICE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_DELETE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INFO.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE_NOLIMIT.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_INVITE_TEMP.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_BITRATE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_NAME.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_NSFW.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_PARENT.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_POSITION.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_SLOWMODE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_TOPIC.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_MODIFY_USERLIMIT.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_PARTY.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_PARTY_CREATE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_CHANNEL_PARTY_DELETE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_KICK.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_LANGUAGE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION_COLOR.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION_GET.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION_GIVE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION_NAME.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_PERMISSION_REMOVE.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_SAY.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+			else if (permission.equalsIgnoreCase(PermissionList.AIO_WELCOME.name())) return hasUserAioPermission(guildId, userId, PermissionList.AIO_BAN.name());
+		}
+		
+		return false;
+	}
+	
+	private boolean hasRoleAioPermission(long roleId, String permission)
+	{
+		if (permissionListRole.containsKey(roleId + "_" + permission))
+		{
+			return permissionListRole.get(roleId + "_" + permission);
+		}
+		else return false;
+	}
+	
+	private boolean hasUserAioPermission(long guildId, long userId, String permission)
+	{
+		if (permissionListUser.containsKey(guildId + "_" + userId + "_" + permission))
+		{
+			return permissionListUser.get(guildId + "_" + userId + "_" + permission);
+		}
+		else return false;
 	}
 	
 	public void setRoleName(long roleId, String name)

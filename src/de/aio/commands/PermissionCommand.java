@@ -24,7 +24,7 @@ public class PermissionCommand implements TextCommand
 				channel.sendMessage(AIO.languageManager.getString("getPermissionInfo")
 						.replace("%roleName%", AIO.INSTANCE.jda.getRoleById(roleId).getName())
 						.replace("%permmisionName%", AIO.permissionManager.getPermissionFromString(args[4]).getName())
-						.replace("%permissionValue%", AIO.permissionManager.hasPermission(roleId, args[4]) + "")
+						.replace("%permissionValue%", AIO.permissionManager.hasRolePermission(roleId, args[4]) + "")
 					).queue();
 			}
 			else
@@ -37,12 +37,12 @@ public class PermissionCommand implements TextCommand
 		{
 			if (member.hasPermission(Permission.ADMINISTRATOR))
 			{
-				if (AIO.permissionManager.givePermission(roleId, args[4]))
+				if (AIO.permissionManager.giveRolePermission(roleId, args[4]))
 				{
 					channel.sendMessage(AIO.languageManager.getString("updatePermission")
 							.replace("%roleName%", AIO.INSTANCE.jda.getRoleById(roleId).getName())
 							.replace("%permmisionName%", AIO.permissionManager.getPermissionFromString(args[4]).getName())
-							.replace("%permissionValue%", AIO.permissionManager.hasPermission(roleId, args[4]) + "")
+							.replace("%permissionValue%", AIO.permissionManager.hasRolePermission(roleId, args[4]) + "")
 						).queue();
 				}
 				else
@@ -62,12 +62,12 @@ public class PermissionCommand implements TextCommand
 		{
 			if (member.hasPermission(Permission.ADMINISTRATOR))
 			{
-				if (AIO.permissionManager.removePermission(roleId, args[4]))
+				if (AIO.permissionManager.removeRolePermission(roleId, args[4]))
 				{
 					channel.sendMessage(AIO.languageManager.getString("updatePermission")
 							.replace("%roleName%", AIO.INSTANCE.jda.getRoleById(roleId).getName())
 							.replace("%permmisionName%", AIO.permissionManager.getPermissionFromString(args[4]).getName())
-							.replace("%permissionValue%", AIO.permissionManager.hasPermission(roleId, args[4]) + "")
+							.replace("%permissionValue%", AIO.permissionManager.hasRolePermission(roleId, args[4]) + "")
 						).queue();
 				}
 				else
