@@ -1,0 +1,37 @@
+package de.aio.commands;
+
+import java.util.concurrent.TimeUnit;
+
+import de.aio.AIO;
+import de.aio.commands.types.TextCommand;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.TextChannel;
+
+public class VerifyCommand implements TextCommand
+{
+	@Override
+	public void performCommand(Member member, TextChannel channel, Message message)
+	{
+		if (!member.getUser().isBot())
+		{
+			String[] args = message.getContentDisplay().split(" ");
+			
+			if (args[1].equalsIgnoreCase("setRole"))
+			{
+				AIO.INSTANCE.reactionLis.setRole(Long.parseLong(args[2]));
+				channel.sendMessage(AIO.languageManager.getString("verifySetRole").replace("%roleName%", member.getGuild().getRoleById(Long.parseLong(args[2])) + "")).complete().delete().delay(5, TimeUnit.SECONDS);
+			}
+			else if (args[1].equalsIgnoreCase("setMsg"))
+			{
+				AIO.INSTANCE.reactionLis.setMessage(Long.parseLong(args[2]));
+				channel.sendMessage(AIO.languageManager.getString("verifySetMessage").replace("%messageId%", Long.parseLong(args[2]) + "")).complete().delete().delay(5, TimeUnit.SECONDS);
+			}
+			else if (args[1].equalsIgnoreCase("setReaction"))
+			{
+				AIO.INSTANCE.reactionLis.setReaction(args[2]);
+				channel.sendMessage(AIO.languageManager.getString("verifySetReaction").replace("%reactionName%", args[2])).complete().delete().delay(5, TimeUnit.SECONDS);
+			}
+		}
+	}
+}

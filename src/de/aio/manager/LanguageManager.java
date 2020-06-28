@@ -110,6 +110,9 @@ public class LanguageManager
 				langEnDefault.put("unknownUser", "Can\'t find the user %unknownUser%.");
 				langEnDefault.put("welcomeUser", "@%userName% welcome to %serverName%.");
 				langEnDefault.put("welcomeSet", "Welcome message has channged.");
+				langEnDefault.put("verifySetRole", "The role for verification is set to %roleName%.");
+				langEnDefault.put("verifySetMessage", "The message for verification is set to %messageId%.");
+				langEnDefault.put("verifySetReaction", "The reaction for verification is set to %reactionName%.");
 				
 				langEnDefault.store(new FileWriter(langEn), null);
 			}
@@ -160,6 +163,9 @@ public class LanguageManager
 				langDeDefault.put("unknownUser", "Kann den User %unknownUser% nicht finden.");
 				langDeDefault.put("welcomeUser", "@%userName% willkommen auf %serverName%.");
 				langDeDefault.put("welcomeSet", "Willkomensnachricht geändert.");
+				langDeDefault.put("verifySetRole", "Die Rolle für die Verifizierung ist %roleName%.");
+				langDeDefault.put("verifySetMessage", "Die Nachricht mit der ID %messageId% wird jetzt für die Verifizierung verwendet.");
+				langDeDefault.put("verifySetReaction", "Die Reaktion %reactionName% wird jetzt für die Verifizierung verwendet.");
 				
 				langDeDefault.store(new FileWriter(langDe), null);
 			}

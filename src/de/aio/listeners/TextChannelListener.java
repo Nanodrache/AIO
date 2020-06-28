@@ -69,6 +69,13 @@ public class TextChannelListener extends ListenerAdapter
 					channel.sendMessage(AIO.languageManager.getString("unknownCommand")).queue();
 				}
 			}
+			else if (cmd.equalsIgnoreCase(Commands.VERIFY.getCmd()))
+			{
+				if (!AIO.commandManager.perform(cmd, member, channel, msg))
+				{
+					channel.sendMessage(AIO.languageManager.getString("unknownCommand")).queue();
+				}
+			}
 		}
 	}
 }

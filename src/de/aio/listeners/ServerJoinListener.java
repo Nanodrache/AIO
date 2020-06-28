@@ -12,7 +12,7 @@ public class ServerJoinListener extends ListenerAdapter
 	@Override
 	public void onGuildMemberJoin(GuildMemberJoinEvent e)
 	{
-		if (AIO.INSTANCE.options.getProperty(Options.WELCOME_MESSAGE.name()).equalsIgnoreCase("false"))
+		if (AIO.INSTANCE.options.getProperty(Options.WelcomeMessage.name()).equalsIgnoreCase("false"))
 		{
 			if (!e.getMember().getUser().isBot())
 			{
@@ -20,7 +20,7 @@ public class ServerJoinListener extends ListenerAdapter
 				
 				if (!member.hasTimeJoined())
 				{
-					TextChannel ch = e.getGuild().getTextChannelById(AIO.INSTANCE.options.getProperty(Options.WELCOME_MESSAGE.name()));
+					TextChannel ch = e.getGuild().getTextChannelById(AIO.INSTANCE.options.getProperty(Options.WelcomeMessage.name()));
 					
 					ch.sendMessage(AIO.languageManager.getString("welcomeUser")
 						.replace("%userName%", member.getEffectiveName())

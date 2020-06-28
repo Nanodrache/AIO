@@ -8,6 +8,7 @@ import java.util.Properties;
 import javax.security.auth.login.LoginException;
 
 import de.aio.listeners.ConsoleListener;
+import de.aio.listeners.ReactionListener;
 import de.aio.listeners.ServerJoinListener;
 import de.aio.listeners.TextChannelListener;
 import de.aio.listeners.VoiceChannelListener;
@@ -29,6 +30,7 @@ public class AIO
 	public static ChannelManager channelManager;
 	public static PartyManager partyManager;
 	public static PermissionManager permissionManager;
+	public ReactionListener reactionLis;
 	public JDA jda;
 	
 	public static void main(String[] args)
@@ -66,7 +68,10 @@ public class AIO
 				optionsFile.createNewFile();
 				options.setProperty(Options.Token.name(), "");
 				options.setProperty(Options.Language.name(), "en");
-				options.setProperty(Options.WELCOME_MESSAGE.name(), "false");
+				options.setProperty(Options.WelcomeMessage.name(), "false");
+				options.setProperty(Options.VerifcationMessage.name(), "0");
+				options.setProperty(Options.VerificationRole.name(), "0");
+				options.setProperty(Options.VerificationReaction.name(), "smile");
 			}
 		}
 		catch (IOException e)
@@ -75,10 +80,12 @@ public class AIO
 		}
 		
 		JDABuilder builder = JDABuilder.createDefault(options.getProperty(Options.Token.name()));
+		reactionLis = new ReactionListener();
 
 		builder.addEventListeners(new TextChannelListener());
 		builder.addEventListeners(new VoiceChannelListener());
 		builder.addEventListeners(new ServerJoinListener());
+		builder.addEventListeners(reactionLis);
 		
 		jda = builder.build();
 		

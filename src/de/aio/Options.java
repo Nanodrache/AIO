@@ -5,5 +5,8 @@ public enum Options
 	Token,
 	CommandPrefix,
 	Language,
-	WELCOME_MESSAGE;
+	WelcomeMessage,
+	VerifcationMessage,
+	VerificationRole,
+	VerificationReaction;
 }

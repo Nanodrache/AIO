@@ -23,7 +23,7 @@ public class WelcomeCommand implements TextCommand
 		{
 			String id = message.getContentRaw().split(" ")[1];
 			
-			AIO.INSTANCE.options.setProperty(Options.WELCOME_MESSAGE.name(), id);
+			AIO.INSTANCE.options.setProperty(Options.WelcomeMessage.name(), id);
 			channel.sendMessage(AIO.languageManager.getString("welcomeSet")).complete().delete().delay(5, TimeUnit.SECONDS);
 		}
 		else
