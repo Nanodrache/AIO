@@ -7,6 +7,7 @@ import de.aio.commands.BanCommand;
 import de.aio.commands.ChannelCommand;
 import de.aio.commands.KickCommand;
 import de.aio.commands.LanguageCommand;
+import de.aio.commands.MultiTwitchCommand;
 import de.aio.commands.PermissionCommand;
 import de.aio.commands.ReactionCommand;
 import de.aio.commands.SayCommand;
@@ -36,6 +37,7 @@ public class CommandManager
 		this.commands.put(Commands.WELCOME.getCmd(), new WelcomeCommand());
 		this.commands.put(Commands.VERIFY.getCmd(), new VerifyCommand());
 		this.commands.put(Commands.REACTION.getCmd(), new ReactionCommand());
+		this.commands.put(Commands.MULTITWITCH.getCmd(), new MultiTwitchCommand());
 	}
 	
 	public boolean perform(String command, Member member, TextChannel channel, Message message)

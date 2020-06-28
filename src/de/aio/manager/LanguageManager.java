@@ -114,6 +114,7 @@ public class LanguageManager
 				langEnDefault.put("verifySetMessage", "The message for verification is set to %messageId%.");
 				langEnDefault.put("verifySetReaction", "The reaction for verification is set to %reactionName%.");
 				langEnDefault.put("reactionDisabledList", "List with all message id\'s with disabled reactions.");
+				langEnDefault.put("multiTwitch", "You can watch all of us here : %link%");
 				
 				langEnDefault.store(new FileWriter(langEn), null);
 			}
@@ -168,6 +169,7 @@ public class LanguageManager
 				langDeDefault.put("verifySetMessage", "Die Nachricht mit der ID %messageId% wird jetzt für die Verifizierung verwendet.");
 				langDeDefault.put("verifySetReaction", "Die Reaktion %reactionName% wird jetzt für die Verifizierung verwendet.");
 				langDeDefault.put("reactionDisabledList", "Liste der Nachrichten bei denen die Reaktionen deaktiviert sind.");
+				langDeDefault.put("multiTwitch", "Hier könnt ihr uns allen zuschauen : %link%");
 				
 				langDeDefault.store(new FileWriter(langDe), null);
 			}
