@@ -113,6 +113,7 @@ public class LanguageManager
 				langEnDefault.put("verifySetRole", "The role for verification is set to %roleName%.");
 				langEnDefault.put("verifySetMessage", "The message for verification is set to %messageId%.");
 				langEnDefault.put("verifySetReaction", "The reaction for verification is set to %reactionName%.");
+				langEnDefault.put("reactionDisabledList", "List with all message id\'s with disabled reactions.");
 				
 				langEnDefault.store(new FileWriter(langEn), null);
 			}
@@ -166,6 +167,7 @@ public class LanguageManager
 				langDeDefault.put("verifySetRole", "Die Rolle für die Verifizierung ist %roleName%.");
 				langDeDefault.put("verifySetMessage", "Die Nachricht mit der ID %messageId% wird jetzt für die Verifizierung verwendet.");
 				langDeDefault.put("verifySetReaction", "Die Reaktion %reactionName% wird jetzt für die Verifizierung verwendet.");
+				langDeDefault.put("reactionDisabledList", "Liste der Nachrichten bei denen die Reaktionen deaktiviert sind.");
 				
 				langDeDefault.store(new FileWriter(langDe), null);
 			}

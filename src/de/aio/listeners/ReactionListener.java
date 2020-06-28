@@ -22,6 +22,10 @@ public class ReactionListener extends ListenerAdapter
 					e.getReaction().removeReaction().complete();
 				}
 			}
+			else if (AIO.reactionManager.getDisabledReactionOnMessages().contains(e.getMessageIdLong()))
+			{
+				e.getReaction().removeReaction().complete();
+			}
 		}
 	}
 }

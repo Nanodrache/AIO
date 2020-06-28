@@ -8,6 +8,7 @@ import de.aio.commands.ChannelCommand;
 import de.aio.commands.KickCommand;
 import de.aio.commands.LanguageCommand;
 import de.aio.commands.PermissionCommand;
+import de.aio.commands.ReactionCommand;
 import de.aio.commands.SayCommand;
 import de.aio.commands.VerifyCommand;
 import de.aio.commands.WelcomeCommand;
@@ -34,6 +35,7 @@ public class CommandManager
 		this.commands.put(Commands.PERMISSION.getCmd(), new PermissionCommand());
 		this.commands.put(Commands.WELCOME.getCmd(), new WelcomeCommand());
 		this.commands.put(Commands.VERIFY.getCmd(), new VerifyCommand());
+		this.commands.put(Commands.REACTION.getCmd(), new ReactionCommand());
 	}
 	
 	public boolean perform(String command, Member member, TextChannel channel, Message message)

@@ -9,7 +9,8 @@ public enum Commands
 	BAN("ban", "<id> <days>", "Ban a user from the server. Optional <days>"),
 	PERMISSION("permission", "<get|give|remove|name|color> <id> <name|permission|r> <g> <b>", "Manage the permisssion system"),
 	WELCOME("welcome", "<id|false>", "Edit welcome channel or turn welcome message off."),
-	VERIFY("verify", "<setRole|setMsg|setReaction> <id|Reaction>", "Manage the user verification");
+	VERIFY("verify", "<setRole|setMsg|setReaction> <id|Reaction>", "Manage the user verification"),
+	REACTION("reaction", "<enable|disable|disabledList> <id>", "Manage reactions");
 	
 	private String cmd;
 	private String args;
