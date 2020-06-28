@@ -6,42 +6,16 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class ReactionListener extends ListenerAdapter
 {
-	private long messageIdVerify = 0;
-	private long roleId = 0;
-	private String reaction = "";
-	
-	public ReactionListener()
-	{
-		setRole(Long.parseLong(AIO.INSTANCE.options.getProperty("VerificationRole")));
-		setMessage(Long.parseLong(AIO.INSTANCE.options.getProperty("VerificationMessage")));
-		setReaction(AIO.INSTANCE.options.getProperty("VerificationReaction"));
-	}
-	
-	public void setRole(long roleId)
-	{
-		this.roleId = roleId;
-	}
-	
-	public void setMessage(long messageId)
-	{
-		this.messageIdVerify = messageId;
-	}
-	
-	public void setReaction(String reaction)
-	{
-		this.reaction = reaction;
-	}
-	
 	@Override
 	public void onGuildMessageReactionAdd(GuildMessageReactionAddEvent e)
 	{
 		if (!e.getMember().getUser().isBot())
 		{
-			if (e.getMessageIdLong() == messageIdVerify)
+			if (e.getMessageIdLong() == AIO.reactionManager.getVerifyMessageId())
 			{
-				if (e.getReactionEmote().getName() == reaction)
+				if (e.getReactionEmote().getName() == AIO.reactionManager.getVerifyReactionName())
 				{
-					e.getMember().getRoles().add(e.getGuild().getRoleById(roleId));
+					e.getMember().getRoles().add(e.getGuild().getRoleById(AIO.reactionManager.getVerifyRoleId()));
 				}
 				else
 				{

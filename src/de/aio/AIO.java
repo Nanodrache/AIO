@@ -17,6 +17,7 @@ import de.aio.manager.CommandManager;
 import de.aio.manager.LanguageManager;
 import de.aio.manager.PartyManager;
 import de.aio.manager.PermissionManager;
+import de.aio.manager.ReactionManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -30,7 +31,7 @@ public class AIO
 	public static ChannelManager channelManager;
 	public static PartyManager partyManager;
 	public static PermissionManager permissionManager;
-	public ReactionListener reactionLis;
+	public static ReactionManager reactionManager;
 	public JDA jda;
 	
 	public static void main(String[] args)
@@ -54,6 +55,7 @@ public class AIO
 		channelManager = new ChannelManager();
 		partyManager = new PartyManager();
 		permissionManager = new PermissionManager();
+		reactionManager = new ReactionManager();
 
 		try
 		{
@@ -80,12 +82,11 @@ public class AIO
 		}
 		
 		JDABuilder builder = JDABuilder.createDefault(options.getProperty(Options.Token.name()));
-		reactionLis = new ReactionListener();
 
 		builder.addEventListeners(new TextChannelListener());
 		builder.addEventListeners(new VoiceChannelListener());
 		builder.addEventListeners(new ServerJoinListener());
-		builder.addEventListeners(reactionLis);
+		builder.addEventListeners(new ReactionListener());
 		
 		jda = builder.build();
 		

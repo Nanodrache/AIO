@@ -19,17 +19,17 @@ public class VerifyCommand implements TextCommand
 			
 			if (args[1].equalsIgnoreCase("setRole"))
 			{
-				AIO.INSTANCE.reactionLis.setRole(Long.parseLong(args[2]));
+				AIO.reactionManager.setVerifyRole(Long.parseLong(args[2]));
 				channel.sendMessage(AIO.languageManager.getString("verifySetRole").replace("%roleName%", member.getGuild().getRoleById(Long.parseLong(args[2])) + "")).complete().delete().delay(5, TimeUnit.SECONDS);
 			}
 			else if (args[1].equalsIgnoreCase("setMsg"))
 			{
-				AIO.INSTANCE.reactionLis.setMessage(Long.parseLong(args[2]));
+				AIO.reactionManager.setVerifyMessage(Long.parseLong(args[2]));
 				channel.sendMessage(AIO.languageManager.getString("verifySetMessage").replace("%messageId%", Long.parseLong(args[2]) + "")).complete().delete().delay(5, TimeUnit.SECONDS);
 			}
 			else if (args[1].equalsIgnoreCase("setReaction"))
 			{
-				AIO.INSTANCE.reactionLis.setReaction(args[2]);
+				AIO.reactionManager.setVerifyReaction(args[2]);
 				channel.sendMessage(AIO.languageManager.getString("verifySetReaction").replace("%reactionName%", args[2])).complete().delete().delay(5, TimeUnit.SECONDS);
 			}
 		}
