@@ -15,6 +15,7 @@ import de.aio.listeners.VoiceChannelListener;
 import de.aio.manager.ChannelManager;
 import de.aio.manager.CommandManager;
 import de.aio.manager.LanguageManager;
+import de.aio.manager.NewsletterManager;
 import de.aio.manager.PartyManager;
 import de.aio.manager.PermissionManager;
 import de.aio.manager.ReactionManager;
@@ -32,6 +33,7 @@ public class AIO
 	public static PartyManager partyManager;
 	public static PermissionManager permissionManager;
 	public static ReactionManager reactionManager;
+	public static NewsletterManager newsletterManager;
 	public JDA jda;
 	
 	public static void main(String[] args)
@@ -56,6 +58,7 @@ public class AIO
 		partyManager = new PartyManager();
 		permissionManager = new PermissionManager();
 		reactionManager = new ReactionManager();
+		newsletterManager = new NewsletterManager();
 
 		try
 		{

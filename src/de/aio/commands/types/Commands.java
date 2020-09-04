@@ -11,7 +11,8 @@ public enum Commands
 	WELCOME("welcome", "<id|false>", "Edit welcome channel or turn welcome message off."),
 	VERIFY("verify", "<setRole|setMsg|setReaction> <id|Reaction>", "Manage the user verification"),
 	REACTION("reaction", "<enable|disable|disabledList> <id>", "Manage reactions"),
-	MULTITWITCH("multitwitch", "<twitchname>...", "Generate multitwitch-link");
+	MULTITWITCH("multitwitch", "<twitchname>...", "Generate multitwitch-link"),
+	NEWSLETTER("newsletter", "<name> <create|set|join|leave> <name> <value>", "Manage newsletter");
 	
 	private String cmd;
 	private String args;

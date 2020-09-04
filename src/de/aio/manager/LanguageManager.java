@@ -115,6 +115,7 @@ public class LanguageManager
 				langEnDefault.put("verifySetReaction", "The reaction for verification is set to %reactionName%.");
 				langEnDefault.put("reactionDisabledList", "List with all message id\'s with disabled reactions.");
 				langEnDefault.put("multiTwitch", "You can watch all of us here : %link%");
+				langEnDefault.put("newsletterFirstCreate", "First you need to create a new newsletter-message with !newsletter <name> <send> <create>.");
 				
 				langEnDefault.store(new FileWriter(langEn), null);
 			}
@@ -170,6 +171,7 @@ public class LanguageManager
 				langDeDefault.put("verifySetReaction", "Die Reaktion %reactionName% wird jetzt für die Verifizierung verwendet.");
 				langDeDefault.put("reactionDisabledList", "Liste der Nachrichten bei denen die Reaktionen deaktiviert sind.");
 				langDeDefault.put("multiTwitch", "Hier könnt ihr uns allen zuschauen : %link%");
+				langDeDefault.put("newsletterFirstCreate", "Du musst zuerst eine Newsletternachricht erstellen mit !newsletter <name> <send> <create>.");
 				
 				langDeDefault.store(new FileWriter(langDe), null);
 			}
